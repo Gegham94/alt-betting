@@ -1,0 +1,53 @@
+<div class="group-winner-card-group" [ngClass]="{'hidden-footer': !footer}">
+  <div class="header">
+    <div class="header-left">
+      <span class="header-title">Correct Score</span>
+    </div>
+    <div class="header-right">
+      <div><span>Winner</span></div>
+      <div><span>Loser</span></div>
+      <div><span>Top2</span></div>
+      <div><span>Bottom2</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="content-children">
+      <ng-container *ngTemplateOutlet="templateOutlet"></ng-container>
+    </div>
+  </div>
+  <div class="footer" *ngIf="footer">
+    <div class="footer-top">
+      <div class="footer-icons-wrapper">
+        <div class="footer-icons footer-icons__edit" (click)="onSaveDraft.emit()">
+          <svg width="16" height="16">
+            <use xlink:href="./assets/icons/global-sprite.svg#gb-document-download"></use>
+          </svg>
+          <span>Save as Draft</span>
+        </div>
+        <div class="footer-icons footer-icons__remove" (click)="onTriggerModal($event)">
+          <svg width="14" height="14">
+            <use xlink:href="./assets/icons/global-sprite.svg#gb-trash"></use>
+          </svg>
+          <span>Clear All</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div @fadeInOut *ngIf="isOpenRemoveModal" class="modal-backdrop" (click)="onTriggerModal($event)">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <section>
+        <p>You definitely want to delete?</p>
+      </section>
+      <footer>
+        <button class="btn-secondary" (click)="onTriggerModal($event)">
+          <span>Cancel</span>
+        </button>
+        <button class="btn-warning" (click)="onRemove($event)">
+          <span>Remove</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+</div>

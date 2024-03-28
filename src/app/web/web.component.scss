@@ -1,0 +1,18 @@
+@import '../../app/scss/mixins';
+:host {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  @include vhMinHeight100;
+
+  .webLayout {
+    width: 100%;
+    @include vhMinHeight100;
+
+    .outletWrapper {
+      display: flex;
+      @include vhMinHeight100MinusHeader;
+
+    }
+  }
+}

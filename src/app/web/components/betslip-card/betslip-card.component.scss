@@ -1,0 +1,195 @@
+:host {
+  width: 100%;
+  display: flex;
+
+  .betslip-card {
+    width: 100%;
+    display: flex;
+    border-radius: 3px;
+    flex-direction: column;
+    background: var(--visual-elements-12);
+
+    .header {
+      display: flex;
+      padding: 6px 8px;
+      align-items: center;
+      justify-content: space-between;
+
+      .header-moveTo {
+        gap: 4px;
+        display: flex;
+        font-size: 10px;
+        cursor: pointer;
+        font-weight: 500;
+        align-items: center;
+        color: var(--text-2);
+
+        svg {
+          transform: rotate(180deg);
+          fill: transparent;
+          stroke: var(--visual-elements-1);
+        }
+      }
+
+      .header-delete {
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          stroke: var(--text-content-secondary);
+        }
+      }
+    }
+
+    .teams-names {
+      display: flex;
+      padding: 4px 8px;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--visual-elements-20);
+      border-top: 1px solid var(--visual-elements-21);
+      border-bottom: 1px solid var(--visual-elements-21);
+
+      span {
+        cursor: default;
+        font-size: 12px;
+        font-weight: 700;
+        text-align: start;
+        color: var(--text-grey);
+      }
+    }
+
+    .section {
+      padding: 8px;
+      display: flex;
+      justify-content: space-between;
+
+      .team {
+        gap: 8px;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+
+        .team-info {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          span {
+            font-size: 12px;
+            cursor: default;
+            font-weight: 400;
+            color: var(--text);
+          }
+        }
+
+        &_home {
+          position: relative;
+          padding-right: 24px;
+
+          &:before {
+            content: '';
+            top: -8px;
+            width: 1px;
+            right: -2px;
+            position: absolute;
+            height: calc(100% + 16px);
+            background: var(--visual-elements-primary-black-2);
+          }
+        }
+
+        &_away {
+          padding-left: 24px;
+        }
+      }
+
+      &__group{
+        .team {
+          width: 100%;
+        }
+      }
+    }
+
+    .footer {
+      gap: 8px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+
+      .stake-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .bet-info-wrapper {
+          gap: 4px;
+          display: flex;
+          flex-direction: column;
+
+          .bet {
+            font-size: 10px;
+            font-weight: 400;
+            color: var(--text-3);
+          }
+
+          .stake {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--text);
+
+            b {
+              font-size: 12px;
+              font-weight: 700;
+              margin-left: 8px;
+              color: var(--warning);
+            }
+          }
+        }
+
+        .stake-input-wrapper {
+          gap: 16px;
+          display: flex;
+          min-height: 49.5px;
+          align-items: flex-start;
+
+          .stake-input {
+            display: flex;
+            flex-direction: column;
+
+            .stake-input-texts {
+              display: flex;
+              margin-top: 2px;
+              align-items: center;
+              justify-content: space-between;
+
+              :first-child {
+                font-size: 10px;
+                font-weight: 400;
+                color: var(--text-grey);
+              }
+
+              :last-child {
+                font-size: 10px;
+                font-weight: 500;
+                color: var(--warning);
+              }
+            }
+          }
+
+          button {
+            padding: 0;
+            width: 70px;
+            display: flex;
+            height: 35.5px;
+            overflow: hidden;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+}

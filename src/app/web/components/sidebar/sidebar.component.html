@@ -1,0 +1,19 @@
+<div class="webSideBar">
+  <div class="categories">
+    <div
+      class="category"
+      [ngClass]="{ active: activeCategory.id === category.id }"
+      (click)="handleActiveCategory(category)"
+      *ngFor="let category of categories">
+      <svg width="24" height="24">
+        <use
+          [attr.fill]="getActiveColor(category)"
+          [attr.xlink:href]="'./assets/icons/global-sprite.svg#' + category.iconName"></use>
+      </svg>
+      <span>{{ category.name }}</span>
+    </div>
+  </div>
+  <div class="categoriesView">
+    <app-sidebar-view [activeCategory]="activeCategory"></app-sidebar-view>
+  </div>
+</div>

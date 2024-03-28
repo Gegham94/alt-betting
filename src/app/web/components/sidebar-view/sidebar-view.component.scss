@@ -1,0 +1,22 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  .webSideBarView {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 16px;
+    flex-direction: column;
+
+    .competitions {
+      gap: 8px;
+      width: 100%;
+      display: flex;
+      margin-top: 8px;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+}

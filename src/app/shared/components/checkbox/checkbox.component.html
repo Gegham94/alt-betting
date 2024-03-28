@@ -1,0 +1,28 @@
+<label
+  [ngClass]="{ have_label: label }"
+  *ngIf="type === 'default'; else switchRef"
+  class="app-checkbox">
+  <span class="label">{{ label }}</span>
+  <input
+    type="checkbox"
+    [disabled]="disabled"
+    [checked]="checked"
+    (change)="onCheckboxChange($event)" />
+  <div class="checkmark_wrapper">
+    <span class="checkmark">
+      <svg>
+        <use xlink:href="./assets/icons/global-sprite.svg#gb-tick"></use>
+      </svg>
+    </span>
+  </div>
+</label>
+<ng-template #switchRef>
+  <label class="app-switch">
+    <input
+      type="checkbox"
+      [disabled]="disabled"
+      [checked]="checked"
+      (change)="onCheckboxChange($event)" />
+    <span class="slider round"></span>
+  </label>
+</ng-template>

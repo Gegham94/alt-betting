@@ -1,0 +1,92 @@
+@import '../../../../app/scss/mixins';
+
+:host {
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  max-width: 451px;
+  top: var(--header-height);
+  @include vhHeight100MinusHeader;
+
+  .webSideBar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    .categories {
+      width: 65px;
+      height: 100%;
+      display: flex;
+      flex-shrink: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      flex-direction: column;
+      border-right: 1px solid var(--visual-elements-4);
+      @include scrollHidden;
+
+      .category {
+        gap: 6px;
+        width: 100%;
+        height: 64px;
+        display: flex;
+        flex-shrink: 0;
+        cursor: pointer;
+        position: relative;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        transition: 0.15s all ease;
+        border-bottom: 1px solid var(--visual-elements-4);
+
+        svg {
+          use {
+            transition: 0.15s fill ease;
+          }
+        }
+
+        span {
+          font-size: 12px;
+          font-weight: 500;
+          color: var(--text-grey);
+        }
+
+        &:before {
+          content: '';
+          left: 0;
+          opacity: 0;
+          width: 4px;
+          height: 100%;
+          position: absolute;
+          pointer-events: none;
+          transition: 0.15s a ease;
+        }
+
+        &.active {
+          background: var(--primary-8);
+
+          span {
+            color: var(--text);
+          }
+          &:before {
+            opacity: 1;
+            pointer-events: auto;
+            background: var(--primary);
+          }
+        }
+      }
+    }
+
+    .categoriesView {
+      flex-grow: 1;
+      height: 100%;
+      display: flex;
+      overflow-y: auto;
+      overflow-x: hidden;
+      flex-direction: column;
+      background: var(--visual-elements-primary-black);
+      @include scrollHidden;
+    }
+  }
+}

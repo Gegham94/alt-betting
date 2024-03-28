@@ -1,0 +1,114 @@
+:host {
+  width: 100%;
+  display: flex;
+
+  .results {
+    //gap: 2px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - var(--header-height));
+
+    form{
+      z-index: 1001;
+      position: relative;
+    .filter-group {
+      gap: 16px;
+      display: flex;
+      padding: 16px 24px;
+      align-items: center;
+      background: var(--visual-elements-4);
+
+      .filter-filed {
+        width: 100%;
+        max-width: 180px;
+      }
+
+      .filter-checkbox {
+        gap: 4px;
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+
+        span {
+          font-size: 14px;
+          font-weight: 500;
+          user-select: none;
+          color: var(--text-grey);
+        }
+      }
+    }
+    }
+
+    .result-data {
+      gap: 24px;
+      padding: 48px;
+      overflow: auto;
+
+      .result-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        &:not(:first-child) {
+          margin-top: 24px;
+        }
+
+        .result-type {
+          display: flex;
+          padding: 8px 24px;
+          align-items: center;
+          justify-content: space-between;
+          background: var(--visual-elements-5);
+
+          .result-type-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+          }
+
+          .result-type-date {
+            gap: 4px;
+            display: flex;
+            align-items: center;
+
+            svg {
+              fill: var(--visual-elements-15);
+            }
+
+            span {
+              font-size: 14px;
+              font-weight: 400;
+              color: var(--text);
+            }
+          }
+        }
+
+        .result-type-cards {
+          gap: 8px;
+          display: grid;
+          margin-top: 16px;
+          grid-template-columns: repeat(auto-fit, minmax(calc(33.3% - 8px), 3fr));
+
+          .card {
+            max-width: initial;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 942px) {
+  :host {
+    .results {
+      .result-data {
+        .result-wrapper {
+          .result-type-cards {
+            grid-template-columns: repeat(auto-fit, minmax(278px, 3fr));
+          }
+        }
+      }
+    }
+  }
+}

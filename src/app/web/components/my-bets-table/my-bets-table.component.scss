@@ -1,0 +1,138 @@
+@import '../../../scss/mixins';
+
+:host {
+  width: 100%;
+  display: flex;
+
+  .my-bets-table {
+    width: 100%;
+    display: flex;
+    height: 554px;
+    overflow: auto;
+    flex-direction: column;
+    @include scrollHidden;
+
+    .table {
+      width: 100%;
+      cursor: default;
+      min-width: 1032px;
+      border-collapse: collapse;
+
+      .thead {
+        top: 0;
+        position: sticky;
+        background: var(--visual-elements-4);
+      }
+
+      .tbody {
+        width: 100%;
+        background: var(--visual-elements-5);
+      }
+    }
+
+    .tfoot {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      position: sticky;
+      padding: 8px 16px;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--visual-elements-4);
+
+      .itemPerPageWrapper {
+        gap: 8px;
+        display: flex;
+        align-items: center;
+
+        .itemPerPage-select {
+          flex-shrink: 0;
+          width: 68px;
+        }
+
+        .text {
+          font-size: 14px;
+          font-weight: 400;
+          color: var(--text-grey-2);
+        }
+      }
+
+      .pagination {
+        gap: 8px;
+        display: flex;
+        align-items: center;
+
+        .pagination-pages {
+          gap: 8px;
+          display: flex;
+          align-items: center;
+
+          .pagination-page {
+            gap: 8px;
+            display: flex;
+            align-items: center;
+
+            .pagination-page_item {
+              width: 39px;
+              height: 32px;
+              display: flex;
+              font-size: 12px;
+              cursor: pointer;
+              font-weight: 400;
+              user-select: none;
+              border-radius: 4px;
+              align-items: center;
+              justify-content: center;
+              color: var(--text-grey-2);
+            }
+
+            .pagination-page_dots {
+              width: 39px;
+              height: 32px;
+              display: flex;
+              font-size: 12px;
+              font-weight: 400;
+              user-select: none;
+              align-items: center;
+              justify-content: center;
+              color: var(--text-grey-2);
+            }
+
+            &.selected {
+              .pagination-page_item {
+                color: var(--text);
+                background: var(--visual-elements-16);
+              }
+            }
+          }
+        }
+
+        .arrow {
+          cursor: pointer;
+          width: 17px;
+          height: 17px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            fill: var(--visual-elements-1);
+            stroke: var(--visual-elements-1);
+          }
+
+          &.left {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      .footerCount {
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--text-grey-2);
+      }
+    }
+  }
+}

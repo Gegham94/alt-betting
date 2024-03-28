@@ -1,0 +1,90 @@
+<div class="webSideBarView">
+  <div>
+    <app-single-select
+      class="filter-filed"
+      [keyName]="'id'"
+      [isSearchable]="true"
+      [placeholder]="'Bet Type'"
+      [returnOnlyKeyName]="false"
+      [(value)]="selectedValue"
+      [options]="[
+          { id: 1, value: 10, name: 'Option 1' },
+          { id: 2, value: 30, name: 'Option 3' },
+          { id: 3, value: 30, name: 'Option 3' }
+        ]">
+    </app-single-select>
+  </div>
+  <div class="competitions">
+
+    <app-competition-type *ngIf="+activeCategory.id === 1">
+      <ng-template>
+        <app-competition>
+          <ng-template>
+            <app-region></app-region>
+          </ng-template>
+        </app-competition>
+        <app-competition>
+          <ng-template>
+            <app-region>
+              <ng-template>
+                <app-region-detail>
+                  <ng-template>
+                    <app-competition-detail (onAddGroup)="onAddGroup($event)">
+                      <ng-template>
+                        <div class="result-widget-group result-widget-group__long">
+                          <span class="result-widget-title">Match Result</span>
+                          <app-result-widget
+                            [coefficient]="1.75"
+                            [name]="'Home'"
+                            [percent]="30"
+                            [color]="'primary'">
+                          </app-result-widget>
+                          <app-result-widget
+                            [coefficient]="1.75"
+                            [name]="'Draw'"
+                            [percent]="30"
+                            [color]="'secondary'"></app-result-widget>
+                          <app-result-widget
+                            [coefficient]="1.75"
+                            [name]="'Away'"
+                            [percent]="30"
+                            [color]="'danger'"></app-result-widget>
+                        </div>
+                        <div class="result-widget-group mt-8">
+                          <span class="result-widget-title">Handicap</span>
+                          <app-result-widget
+                            [coefficient]="1.75"
+                            [name]="'Draw'"
+                            [percent]="30"
+                            [color]="'secondary'"></app-result-widget>
+                          <app-result-widget
+                            [coefficient]="1.75"
+                            [name]="'Away'"
+                            [percent]="30"
+                            [color]="'danger'"></app-result-widget>
+                        </div>
+                        <div class="result-widget-group mt-8">
+                          <span class="result-widget-title">Home Total Goals</span>
+                          <app-result-widget
+                            [coefficient]="1.75"
+                            [name]="'Draw'"
+                            [percent]="30"
+                            [color]="'secondary'"></app-result-widget>
+                          <app-result-widget
+                            [coefficient]="1.75"
+                            [name]="'Away'"
+                            [percent]="30"
+                            [color]="'danger'"></app-result-widget>
+                        </div>
+                      </ng-template>
+                    </app-competition-detail>
+                  </ng-template>
+                </app-region-detail>
+              </ng-template>
+            </app-region>
+          </ng-template>
+        </app-competition>
+      </ng-template>
+    </app-competition-type>
+  </div>
+</div>

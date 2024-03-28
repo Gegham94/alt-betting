@@ -1,0 +1,130 @@
+<div class="match-builder">
+  <div class="tabs">
+    <div
+      class="tab"
+      (click)="activeTabId = tab.id"
+      *ngFor="let tab of tabs"
+      [ngClass]="{ active: activeTabId === tab.id }">
+      <span>{{ tab.name }}</span>
+    </div>
+  </div>
+
+  <div class="filters">
+    <div
+      class="filter"
+      (click)="activeFilter.next(filter)"
+      *ngFor="let filter of filters"
+      [ngClass]="{ active: activeFilter.value.id === filter.id }">
+      <div *ngIf="filter.value === 'favorite'" class="favorite">
+        <svg width="16" height="16">
+          <use xlink:href="./assets/icons/global-sprite.svg#gb-star"></use>
+        </svg>
+      </div>
+      <span *ngIf="filter.value !== 'favorite'">{{ filter?.name }}</span>
+    </div>
+  </div>
+
+  @if (
+    activeTabId === 1 &&
+    (matchBuilderService.homeAssets.getValue().length > 0 || matchBuilderService.awayAssets.getValue().length > 0)
+  ) {
+    <div>
+      <app-cross-match-card-group
+        (onRemoveAll)="onRemoveMatchBuilderCard()"
+        (onSaveDraft)="onSaveDraftMatchBuilderCard()">
+        <ng-template #leftTemplate let-context>
+          <app-match-card
+            class="content-child"
+            [isLive]="true"
+            [isEditMood]="context.edit"
+            [disabledTeamPosition]="option?.position || null"
+            *ngFor="let option of matchBuilderService.homeAssets$ | async"
+            (onDelete)="matchBuilderService.onDeleteAssets('homeAssets', option)"
+            (onCastling)="matchBuilderService.onCastlingAssets('homeAssets', option)">
+          </app-match-card>
+        </ng-template>
+        <ng-template #rightTemplate let-context>
+          <app-match-card
+            [dir]="'rtl'"
+            class="content-child"
+            [isEditMood]="context.edit"
+            [disabledTeamPosition]="option?.position || null"
+            *ngFor="let option of matchBuilderService.awayAssets$ | async"
+            (onDelete)="matchBuilderService.onDeleteAssets('awayAssets', option)"
+            (onCastling)="matchBuilderService.onCastlingAssets('awayAssets', option)">
+          </app-match-card>
+        </ng-template>
+        <ng-template #collapseTemplate>
+          <app-market-group-collapse [title]="'Match Result'">
+            <ng-template>
+              <div class="d-flex flex-column gap-16">
+                <div class="market-group-collapse-header">
+                  <span>Home</span>
+                  <span>Draw</span>
+                  <span>Away</span>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <app-selection *ngFor="let option of [{}, {}, {}]"></app-selection>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <app-selection *ngFor="let option of [{}, {}, {}]"></app-selection>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <app-selection *ngFor="let option of [{}, {}, {}]"></app-selection>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <app-selection *ngFor="let option of [{}, {}]"></app-selection>
+                </div>
+                <div class="d-flex align-items-center justify-content-center">
+                  <app-selection *ngFor="let option of [{}]"></app-selection>
+                </div>
+              </div>
+            </ng-template>
+          </app-market-group-collapse>
+        </ng-template>
+      </app-cross-match-card-group>
+    </div>
+  }
+
+  @if (activeTabId === 2 && matchBuilderService.groupAssets.value.length > 0) {
+    <div>
+      <app-group-winner-card-group>
+        <ng-template #templateCards>
+          <app-group-winner-card
+            [isLive]="false"
+            class="content-child"
+            [disabledTeamPosition]="option?.position || null"
+            *ngFor="let option of matchBuilderService.groupAssets.value">
+            <app-selection [isColumn]="true" [hideTitle]="true"></app-selection>
+            <app-selection [isColumn]="true" [hideTitle]="true"></app-selection>
+            <app-selection [isColumn]="true" [hideTitle]="true"></app-selection>
+            <app-selection [isColumn]="true" [hideTitle]="true"></app-selection>
+          </app-group-winner-card>
+        </ng-template>
+      </app-group-winner-card-group>
+      <app-group-winner-card-group
+        class="mt-16"
+        [footer]="true"
+        (onRemoveAll)="onClearAllGroupWinners()"
+        (onSaveDraft)="onSaveDraftGroupWinners()"
+      >
+        <ng-template #templateCards let-context>
+          <div class="group-winner-card-group">
+            <div class="group-winner-card-group_left">
+              <div class="group-winner-card-group_selectionsGroup" *ngFor="let option of [{}, {}, {}]">
+                <app-selection [isColumn]="true" [title]="'Over 250'"></app-selection>
+                <app-selection [isColumn]="true" [title]="'Under 250'"></app-selection>
+              </div>
+            </div>
+            <div class="group-winner-card-group_right group-winner-card-group__sticky">
+              <app-selection [isColumn]="true" [hideTitle]="true"></app-selection>
+              <app-selection [isColumn]="true" [hideTitle]="true"></app-selection>
+              <app-selection [isColumn]="true" [hideTitle]="true"></app-selection>
+              <app-selection [isColumn]="true" [hideTitle]="true"></app-selection>
+            </div>
+          </div>
+        </ng-template>
+      </app-group-winner-card-group>
+    </div>
+  }
+</div>

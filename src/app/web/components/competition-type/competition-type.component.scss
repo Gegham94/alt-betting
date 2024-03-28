@@ -1,0 +1,74 @@
+@import '../../../../app/scss/mixins';
+
+:host {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .competitionWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    @include userSelectNone;
+
+    .competition {
+      width: 100%;
+      height: 40px;
+      display: flex;
+      flex-shrink: 0;
+      overflow: hidden;
+      padding: 8px 10px;
+      border-radius: 4px;
+      align-items: center;
+      justify-content: space-between;
+      transition:
+        0.3s margin-bottom,
+        0.2s border-radius ease;
+
+      .label {
+        gap: 8px;
+        display: flex;
+        align-items: center;
+
+        span {
+          cursor: default;
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--text);
+        }
+      }
+
+      .arrow {
+        transform: rotateX(180deg);
+        stroke: var(--visual-elements-6);
+        transition: 0.15s transform ease;
+
+        svg {
+          stroke-width: 10px;
+        }
+      }
+    }
+
+    .collapse {
+      gap: 4px;
+      width: 100%;
+      display: flex;
+      overflow: hidden;
+      align-items: center;
+      flex-direction: column;
+      background: var(--visual-elements-primary-black-1);
+    }
+
+    &.open {
+      > .competition {
+        margin-bottom: 4px;
+        border-radius: 4px 4px 0 0;
+        .arrow {
+          transform: rotateX(0deg);
+        }
+      }
+    }
+  }
+}

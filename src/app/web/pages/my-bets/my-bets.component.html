@@ -1,0 +1,135 @@
+<div class="my-bets">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="filter-group">
+      <app-single-select
+        formControlName="betId"
+        class="filter-filed"
+        [keyName]="'id'"
+        [isSearchable]="true"
+        [placeholder]="'Bet ID'"
+        [returnOnlyKeyName]="true"
+        [value]="form.controls['betId'].value"
+        [options]="[
+          { id: 1, value: 10, name: 'Option 1' },
+          { id: 3, value: 30, name: 'Option 3' },
+          { id: 3, value: 30, name: 'Option 3' }
+        ]">
+      </app-single-select>
+
+      <app-date-picker
+        [disabledBefore]="form.get('to')?.value"
+        [placeholder]="'From'"
+        class="filter-filed"
+        formControlName="from"></app-date-picker>
+
+      <app-date-picker
+        [disabledAfter]="form.get('from')?.value"
+        [placeholder]="'To'"
+        class="filter-filed"
+        formControlName="to"></app-date-picker>
+
+      <app-multi-select
+        formControlName="matchType"
+        class="filter-filed"
+        [placeholder]="'Match Type'"
+        [isSearchable]="true"
+        [returnOnlyKeyName]="false"
+        [badgesLength]="1"
+        [values]="form.controls['matchType'].value"
+        [options]="[
+          { id: 1, value: 10, name: 'Option 1', title: 'opt 1' },
+          { id: 2, value: 20, name: 'Option 2', title: 'opt 2' },
+          { id: 3, value: 30, name: 'Option 3', title: 'opt 3' }
+        ]">
+      </app-multi-select>
+
+      <app-single-select
+        formControlName="betType"
+        class="filter-filed"
+        [keyName]="'id'"
+        [isSearchable]="true"
+        [placeholder]="'Bet Type'"
+        [returnOnlyKeyName]="true"
+        [value]="form.controls['betType'].value"
+        [options]="[
+          { id: 1, value: 10, name: 'Option 1' },
+          { id: 3, value: 30, name: 'Option 3' },
+          { id: 3, value: 30, name: 'Option 3' }
+        ]">
+      </app-single-select>
+
+      <app-single-select
+        formControlName="state"
+        class="filter-filed"
+        [keyName]="'id'"
+        [isSearchable]="true"
+        [placeholder]="'State'"
+        [returnOnlyKeyName]="true"
+        [value]="form.controls['state'].value"
+        [options]="[
+          { id: 1, value: 10, name: 'Option 1' },
+          { id: 3, value: 30, name: 'Option 3' },
+          { id: 3, value: 30, name: 'Option 3' }
+        ]">
+      </app-single-select>
+
+      <button class="btn-success" type="submit">
+        <span>Filter</span>
+      </button>
+    </div>
+    <app-my-bets-table
+      class="table"
+      [tableData]="tableData"
+      [currentPage]="currentPage"
+      [itemPerPage]="itemPerPage"
+      (onChangePage)="onChangePage($event)"
+      (onChangeItemPerPage)="onChangeItemPerPage($event)">
+      <ng-template #thead>
+        <tr class="tableRow-head">
+          <td class="tableCell">Date & Time</td>
+          <td class="tableCell">Bet ID</td>
+          <td class="tableCell">Bet Type</td>
+          <td class="tableCell">Bet Amount</td>
+          <td class="tableCell">Win Amount</td>
+          <td class="tableCell">Odds</td>
+          <td class="tableCell">State</td>
+        </tr>
+      </ng-template>
+      <ng-template #tbody>
+        <tr *ngFor="let data of tableData; index as idx" class="tableRow-body">
+          <td class="tableCell">24 Aug 22:00</td>
+          <td class="tableCell">4567891120</td>
+          <td class="tableCell">Single</td>
+          <td class="tableCell">Text</td>
+          <td class="tableCell winAmount">
+            <span>1000 AMD</span>
+            <span>To Return 1,000,000</span>
+          </td>
+          <td class="tableCell odds">1.85</td>
+          <td class="tableCell">IN</td>
+        </tr>
+      </ng-template>
+    </app-my-bets-table>
+  </form>
+  <div class="promotion">
+    <span class="title">Promotion</span>
+    <div class="promotion-body">
+      <div class="promotion-team">
+        <div class="jersey-wrapper">
+          <img src="assets/images/jersey-1.png" alt="jersey" width="24" height="24" />
+        </div>
+        <span>FC Naftovik Dolina</span>
+      </div>
+      <div class="promotion-date">
+        <span>22:00</span>
+        <span>24 October</span>
+      </div>
+      <div class="promotion-team">
+        <div class="jersey-wrapper">
+          <img src="assets/images/jersey-2.png" alt="jersey" width="24" height="24" />
+        </div>
+        <span>Prykarpattia Teplovyk</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,125 @@
+@import "./config";
+
+@mixin vhMinHeight100 {
+  min-height: 100vh;
+  @supports (-webkit-touch-callout: none) {
+    min-height: 100svh;
+    max-height: -webkit-fill-available;
+  }
+}
+@mixin vhHeight100 {
+  height: 100vh;
+  @supports (-webkit-touch-callout: none) {
+    height: 100svh;
+  }
+}
+
+@mixin vhMinHeight100MinusHeader {
+  min-height: calc(100vh - var(--header-height));
+  @supports (-webkit-touch-callout: none) {
+    min-height: calc(100svh - var(--header-height));
+    max-height: -webkit-fill-available;
+  }
+}
+
+@mixin vhHeight100MinusHeader {
+  height: calc(100vh - var(--header-height));
+  @supports (-webkit-touch-callout: none) {
+    height: calc(100svh - var(--header-height));
+  }
+}
+
+@mixin scrollHidden {
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-corner {
+    display: none;
+  }
+}
+
+@mixin userSelectNone {
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+@mixin mobileTapColorNone {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@mixin projectScrollVertical {
+  &::-webkit-scrollbar {
+    width: 4px;
+    user-select: none;
+    background: var(--visual-elements-12);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width: 4px;
+    height: 10px;
+    border-radius: 4px;
+    background: var(--visual-elements-13);
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+@mixin projectScrollVerticalSmall {
+  &::-webkit-scrollbar {
+    width: 2px;
+    user-select: none;
+    background: var(--visual-elements-12);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width: 2px;
+    height: 10px;
+    border-radius: 2px;
+    background: var(--visual-elements-13);
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+@mixin projectScrollHorizontal {
+  &::-webkit-scrollbar {
+    height: 4px;
+    user-select: none;
+    background: var(--visual-elements-12);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 4px;
+    border-radius: 4px;
+    background: var(--visual-elements-13);
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+@mixin projectScrollHorizontalSmall {
+  &::-webkit-scrollbar {
+    height: 2px;
+    user-select: none;
+    background: var(--visual-elements-12);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 2px;
+    border-radius: 2px;
+    background: var(--visual-elements-13);
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}

@@ -1,0 +1,88 @@
+<div class="results">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="filter-group">
+      <app-single-select
+        formControlName="betId"
+        class="filter-filed"
+        [keyName]="'id'"
+        [isSearchable]="true"
+        [placeholder]="'Bet ID'"
+        [returnOnlyKeyName]="true"
+        [value]="form.controls['betId'].value"
+        [options]="[
+          { id: 1, value: 10, name: 'Option 1' },
+          { id: 3, value: 30, name: 'Option 3' },
+          { id: 3, value: 30, name: 'Option 3' }
+        ]">
+      </app-single-select>
+
+      <app-date-picker
+        [disabledBefore]="form.get('to')?.value"
+        [placeholder]="'From'"
+        class="filter-filed"
+        formControlName="from"></app-date-picker>
+
+      <app-date-picker
+        [disabledAfter]="form.get('from')?.value"
+        [placeholder]="'To'"
+        class="filter-filed"
+        formControlName="to"></app-date-picker>
+
+      <app-single-select
+        formControlName="betType"
+        class="filter-filed"
+        [keyName]="'id'"
+        [isSearchable]="true"
+        [placeholder]="'Bet Type'"
+        [returnOnlyKeyName]="true"
+        [value]="form.controls['betType'].value"
+        [options]="[
+          { id: 1, value: 10, name: 'Option 1' },
+          { id: 3, value: 30, name: 'Option 3' },
+          { id: 3, value: 30, name: 'Option 3' }
+        ]">
+      </app-single-select>
+
+      <app-single-select
+        formControlName="state"
+        class="filter-filed"
+        [keyName]="'id'"
+        [isSearchable]="true"
+        [placeholder]="'State'"
+        [returnOnlyKeyName]="true"
+        [value]="form.controls['state'].value"
+        [options]="[
+          { id: 1, value: 10, name: 'Option 1' },
+          { id: 3, value: 30, name: 'Option 3' },
+          { id: 3, value: 30, name: 'Option 3' }
+        ]">
+      </app-single-select>
+
+      <label class="filter-checkbox">
+        <app-checkbox formControlName="withLineups"></app-checkbox>
+        <span>With Lineups only</span>
+      </label>
+
+      <button class="btn-success" type="submit">
+        <span>Filter</span>
+      </button>
+    </div>
+  </form>
+
+  <div class="result-data">
+    <div class="result-wrapper" *ngFor="let card of [{}, {}, {}, {}, {}]">
+      <div class="result-type">
+        <span class="result-type-title">Match result</span>
+        <div class="result-type-date">
+          <svg width="14" height="14">
+            <use xlink:href="./assets/icons/global-sprite.svg#gb-calendar"></use>
+          </svg>
+          <span>24 Aug 22:00</span>
+        </div>
+      </div>
+      <div class="result-type-cards">
+        <app-match-card class="card" *ngFor="let card of [{}, {}, {}, {}, {}, {}, {}, {}, {}]"></app-match-card>
+      </div>
+    </div>
+  </div>
+</div>

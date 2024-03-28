@@ -1,0 +1,13 @@
+<div class="resultWidget">
+  <div class="content">
+    <span class="name">{{ name }}</span>
+    <span class="coefficient">{{coefficient}}</span>
+  </div>
+
+  <div class="rangeWrapper">
+    <div class="rangeBackdrop">
+      <div class="range" [ngStyle]="{ '--percent.%': percent }"></div>
+    </div>
+    <span class="percent" *ngIf="showPercent">{{ percent }}%</span>
+  </div>
+</div>

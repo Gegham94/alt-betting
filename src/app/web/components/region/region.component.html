@@ -1,0 +1,19 @@
+<div class="regionWrapper" [ngClass]="{ open: isOpen }">
+  <div class="region" (click)="handleIsOpen()">
+    <div class="label">
+      <img [src]="option.srcImage" alt="logo" width="28" height="20" />
+      <span>{{ option.label }}</span>
+    </div>
+
+    <div class="star" [ngClass]="{ selected: startSelected }" (click)="handleStarClick($event)">
+      <svg width="16" height="16">
+        <use xlink:href="./assets/icons/global-sprite.svg#gb-star"></use>
+      </svg>
+    </div>
+  </div>
+  <div @collapse *ngIf="isOpen" class="collapse-wrapper">
+  <div class="collapse">
+    <ng-container [ngTemplateOutlet]="contentChild"></ng-container>
+  </div>
+  </div>
+</div>

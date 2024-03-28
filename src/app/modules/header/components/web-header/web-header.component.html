@@ -1,0 +1,14 @@
+<div class="web-header">
+  <a
+    class="option"
+    [routerLink]="option.link"
+    routerLinkActive="active"
+    *ngFor="let option of OPTIONS"
+    >
+    <span>{{ option.name }}</span>
+    <svg @fadeIn width="16" height="16">
+      <use xlink:href="./assets/icons/global-sprite.svg#gb-football"></use>
+    </svg>
+  </a>
+</div>
+<div class="padding"></div>

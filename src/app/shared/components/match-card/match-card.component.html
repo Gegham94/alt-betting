@@ -1,0 +1,61 @@
+<div class="match-builder-cross-match-card" [ngClass]="{ rtl: dir === 'rtl' }">
+  <header class="header">
+    <img src="assets/images/eu.png" alt="region" width="28" height="20" />
+    <span>UEFA Championship</span>
+  </header>
+  <section class="section" [dir]="dir">
+    <div class="left">
+      <div class="left_name">
+        <div class="live" *ngIf="isLive">
+          <span class="live_dot"></span>
+          <span>Live</span>
+        </div>
+        <div class="d-flex align-items-center gap-2" *ngIf="!isLive">
+          <div class="hag hag_green">
+            <span>H</span>
+          </div>
+          <div class="hag hag_yellow">
+            <span>A</span>
+          </div>
+          <div class="hag hag_blue">
+            <span>G</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="right">
+      <div class="team" [ngClass]="{'disabled': disabledTeamPosition === 'bottom'}">
+        <span class="team_name">Arsenal</span>
+        <img class="team_logo" src="assets/images/arsenal.png" alt="region" width="16" height="16" />
+      </div>
+      <div class="team" [ngClass]="{'disabled': disabledTeamPosition === 'top'}">
+        <span class="team_name">Manchester United</span>
+        <img class="team_logo" src="assets/images/manchester.png" alt="region" width="16" height="16" />
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="footer_left" *ngIf="dir === 'ltr' && isEditMood" (click)="onDelete.emit()">
+      <svg width="14" height="14">
+        <use xlink:href="./assets/icons/global-sprite.svg#gb-trash"></use>
+      </svg>
+    </div>
+    <div class="footer_right">
+      <svg width="13" height="13">
+        <use xlink:href="./assets/icons/global-sprite.svg#gb-calendar"></use>
+      </svg>
+      <span>11 Sep 02:00</span>
+    </div>
+    <div class="footer_left" *ngIf="dir === 'rtl' && isEditMood" (click)="onDelete.emit()">
+      <svg width="14" height="14">
+        <use xlink:href="./assets/icons/global-sprite.svg#gb-trash"></use>
+      </svg>
+    </div>
+  </footer>
+  <div class="castling" (click)="onCastling.emit()" *ngIf="isEditMood">
+    <svg width="9" height="9">
+      <use xlink:href="./assets/icons/global-sprite.svg#gb-double-right"></use>
+    </svg>
+  </div>
+</div>

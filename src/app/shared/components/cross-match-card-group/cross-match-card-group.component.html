@@ -1,0 +1,92 @@
+<div class="match-card-group">
+  <div class="header">
+    <div class="header-block">
+      <span class="header-title">Start Date</span>
+      <div class="header-date-wrapper">
+        <svg width="10" height="10">
+          <use xlink:href="./assets/icons/global-sprite.svg#gb-calendar"></use>
+        </svg>
+        <span class="date">24 Aug 22:01</span>
+      </div>
+    </div>
+
+    <div class="header-block">
+      <span class="header-title">Last Updated</span>
+      <div class="header-date-wrapper">
+        <svg width="10" height="10">
+          <use xlink:href="./assets/icons/global-sprite.svg#gb-calendar"></use>
+        </svg>
+        <span class="date">24 Aug 22:01</span>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="content-children">
+      <ng-container *ngTemplateOutlet="leftTemplate; context: myContext"></ng-container>
+    </div>
+    <div class="content-children">
+      <ng-container *ngTemplateOutlet="rightTemplate; context: myContext"></ng-container>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-top">
+      <div class="footer-icons-wrapper">
+        <!--        <div class="footer-icons footer-icons__share" (click)="onFooterIconsHandler('share')">-->
+        <!--          <svg width="20" height="20">-->
+        <!--            <use xlink:href="./assets/icons/global-sprite.svg#gb-send"></use>-->
+        <!--          </svg>-->
+        <!--          <span>Share</span>-->
+        <!--        </div>-->
+        <div *ngIf="typeGroup === 1" class="footer-icons__changeCards" (click)="onFooterIconsHandler('edit')">
+          <svg width="18" height="18">
+            <use xlink:href="./assets/icons/global-sprite.svg#gb-note"></use>
+          </svg>
+        </div>
+        <div class="footer-icons footer-icons__edit" (click)="onSaveDraft.emit()">
+          <svg width="16" height="16">
+            <use xlink:href="./assets/icons/global-sprite.svg#gb-document-download"></use>
+          </svg>
+          <span>Save as Draft</span>
+        </div>
+        <div *ngIf="typeGroup === 1" class="footer-icons footer-icons__remove" (click)="onTriggerModal($event)">
+          <svg width="14" height="14">
+            <use xlink:href="./assets/icons/global-sprite.svg#gb-trash"></use>
+          </svg>
+          <span>Remove All</span>
+        </div>
+        <div *ngIf="typeGroup === 2" class="footer-icons footer-icons__expend" (click)="onExpend()">
+          <span>{{expanded ? 'Collapse All' : 'Expand All' }}</span>
+        </div>
+      </div>
+      <div class="footer-show-more" (click)="isOpen = !isOpen" [ngClass]="{ isOpen }">
+        <span>Show More</span>
+        <div class="footer-show-more-arrowUp">
+          <svg width="12" height="12">
+            <use xlink:href="./assets/icons/global-sprite.svg#gb-arrowUp"></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div @collapse *ngIf="isOpen" class="collapse-wrapper">
+      <div class="collapse">
+        <ng-container *ngTemplateOutlet="collapseTemplate"></ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div @fadeInOut *ngIf="isOpenRemoveModal" class="modal-backdrop" (click)="onTriggerModal($event)">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <section>
+        <p>You definitely want to delete?</p>
+      </section>
+      <footer>
+        <button class="btn-secondary" (click)="onTriggerModal($event)">
+          <span>Cancel</span>
+        </button>
+        <button class="btn-warning" (click)="onRemove($event)">
+          <span>Remove</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+</div>

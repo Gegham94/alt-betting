@@ -1,0 +1,78 @@
+<div class="populars">
+
+  <div class="tabs">
+    <div
+      class="tab"
+      (click)="activeTabId = tab.id"
+      *ngFor="let tab of tabs"
+      [ngClass]="{ active: activeTabId === tab.id }">
+      <span>{{ tab.name }}</span>
+    </div>
+  </div>
+
+  <div class="filters">
+    <div
+      class="filter"
+      (click)="activeFilter.next(filter)"
+      *ngFor="let filter of filters"
+      [ngClass]="{ active: activeFilter.value.id === filter.id }">
+      <div *ngIf="filter.value === 'favorite'" class="favorite">
+        <svg width="16" height="16">
+          <use xlink:href="./assets/icons/global-sprite.svg#gb-star"></use>
+        </svg>
+      </div>
+      <span *ngIf="filter.value !== 'favorite'">{{filter?.name}}</span>
+    </div>
+  </div>
+
+  <app-cross-match-card-group [typeGroup]="2" class="group-popular">
+    <ng-template #leftTemplate let-context>
+      <app-match-card
+        [isLive]="false"
+        [isEditMood]="context.edit"
+        *ngFor="let option of [1, 2]"
+        [typeCard]="context.expanded ? 1 : 2"
+        [ngClass]="{ 'content-child': !context.expanded }">
+      </app-match-card>
+    </ng-template>
+    <ng-template #rightTemplate let-context>
+      <app-match-card
+        [dir]="'rtl'"
+        [isEditMood]="context.edit"
+        *ngFor="let option of [1, 2, 3, 4, 5]"
+        [typeCard]="context.expanded ? 1 : 2"
+        [ngClass]="{ 'content-child': !context.expanded }">
+      </app-match-card>
+    </ng-template>
+    <ng-template #collapseTemplate>
+      <div class="gap-4 d-flex flex-column">
+        <app-market-group-collapse [title]="'Match Result'" *ngFor="let o of [1, 2, 3]">
+          <ng-template>
+            <div class="d-flex flex-column gap-16">
+              <div class="market-group-collapse-header">
+                <span>Home</span>
+                <span>Draw</span>
+                <span>Away</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <app-selection *ngFor="let option of [{}, {}, {}]"></app-selection>
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <app-selection *ngFor="let option of [{}, {}, {}]"></app-selection>
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <app-selection *ngFor="let option of [{}, {}, {}]"></app-selection>
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <app-selection *ngFor="let option of [{}, {}]"></app-selection>
+              </div>
+              <div class="d-flex align-items-center justify-content-center">
+                <app-selection *ngFor="let option of [{}]"></app-selection>
+              </div>
+            </div>
+          </ng-template>
+        </app-market-group-collapse>
+      </div>
+    </ng-template>
+  </app-cross-match-card-group>
+</div>

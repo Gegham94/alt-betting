@@ -1,0 +1,56 @@
+<div class="my-bets-table">
+  <table class="table">
+    <thead class="thead">
+      <ng-container *ngTemplateOutlet="thead"></ng-container>
+    </thead>
+    <tbody class="tbody">
+      <ng-container *ngTemplateOutlet="tbody"></ng-container>
+    </tbody>
+  </table>
+  <div class="tfoot">
+    <div class="itemPerPageWrapper">
+      <span class="text">View</span>
+      <app-single-select
+        [deleteBtn]="false"
+        [keyName]="'value'"
+        [value]="itemPerPage"
+        class="itemPerPage-select"
+        [returnOnlyKeyName]="true"
+        [options]="itemPerPagesOptions"
+        (valueChange)="onChangeItemPerPageHandler($event)">
+      </app-single-select>
+      <span class="text">items per page</span>
+    </div>
+
+    <div class="pagination">
+      <div (click)="setPage(this.currentPage - 1)" class="arrow left">
+        <svg width="17" height="17">
+          <use xlink:href="./assets/icons/global-sprite.svg#gb-paginationArrow"></use>
+        </svg>
+      </div>
+      <div class="pagination-pages">
+        <div
+          class="pagination-page"
+          (click)="setPage(page)"
+          [ngClass]="{ selected: currentPage === page }"
+          *ngFor="let page of getPages(); index as idx">
+          <div class="pagination-page_item">
+            <span>{{ page }}</span>
+          </div>
+          <div
+            class="pagination-page_dots"
+            *ngIf="getPages().length - 2 === idx && currentPage + pageShowCounts < getTotalPagesCount()">
+            <span> ... </span>
+          </div>
+        </div>
+      </div>
+      <div (click)="setPage(this.currentPage + 1)" class="arrow">
+        <svg width="17" height="17">
+          <use xlink:href="./assets/icons/global-sprite.svg#gb-paginationArrow"></use>
+        </svg>
+      </div>
+    </div>
+
+    <div class="footerCount">Showing {{itemPerPage}} — {{currentPage}} of {{getTotalPagesCount()}}</div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="competitionWrapper" [ngClass]="{ open: isOpen }">
+  <div class="competition" [ngStyle]="{ background: option.background }" (click)="handleIsOpen()">
+    <div class="label">
+      <svg width="20" height="20">
+        <use [attr.fill]="option.iconColor" [attr.xlink:href]="'./assets/icons/global-sprite.svg#' + option.icon"></use>
+      </svg>
+      <span>{{ option.label }}</span>
+    </div>
+    <div class="arrow">
+      <svg width="12" height="12">
+        <use xlink:href="./assets/icons/global-sprite.svg#gb-arrowUp"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="collapse" @collapse *ngIf="isOpen">
+    <ng-container [ngTemplateOutlet]="contentChild"></ng-container>
+  </div>
+</div>

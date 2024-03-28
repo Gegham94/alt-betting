@@ -1,0 +1,74 @@
+:host {
+  width: 100%;
+  display: flex;
+
+  .market-group-collapse {
+    width: 100%;
+    border: 1px solid var(--visual-elements-3);
+    background: var(--visual-elements-primary-black);
+
+    .header {
+      display: flex;
+      padding: 8px 24px;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--visual-elements-3);
+
+      .header-title {
+        cursor: default;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .header-icons {
+        gap: 16px;
+        display: flex;
+        align-items: center;
+
+        .header-star {
+          cursor: default;
+          svg {
+            stroke-width: 2px;
+            fill: transparent;
+            stroke: var(--visual-elements-1);
+            transition: 0.15s all ease;
+          }
+
+          &.selected {
+            svg {
+              stroke: transparent;
+              fill: var(--warning);
+            }
+          }
+        }
+
+        .header-arrow {
+          transform: rotateX(180deg);
+          transition: 0.3s transform ease;
+
+          svg {
+            stroke-width: 4px;
+            stroke: var(--visual-elements-1);
+          }
+        }
+      }
+
+      &.isOpen {
+        > .header-icons {
+          .header-arrow {
+            transform: rotateX(0deg);
+          }
+        }
+      }
+    }
+
+    .collapse_wrapper {
+      overflow: hidden;
+
+      .collapse {
+        padding: 2px 34px 21px 34px;
+      }
+    }
+  }
+}

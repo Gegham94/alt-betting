@@ -1,0 +1,17 @@
+<div class="layoutSideBar">
+  <div class="sidebar">
+  <app-sidebar></app-sidebar>
+  </div>
+
+   <div class="view-pages">
+     <router-outlet></router-outlet>
+   </div>
+
+  <div class="bet-slip-wrapper">
+    <app-betslip class="bet-slip" [isOpen]="betslipService.isOpenBetSlip" (onChangeIsOpen)="onChangeIsOpenBetSlip($event)">
+      <ng-template>
+        <app-betslip-card *ngFor="let card of [{}, {}, {}]" ></app-betslip-card>
+      </ng-template>
+    </app-betslip>
+  </div>
+</div>

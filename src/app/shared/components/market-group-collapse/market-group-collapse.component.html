@@ -1,0 +1,23 @@
+<div class="market-group-collapse" >
+  <div class="header" (click)="isOpen = !isOpen" [ngClass]="{isOpen}">
+    <span class="header-title">{{title}}</span>
+    <div class="header-icons">
+      <div class="header-star" [ngClass]="{'selected':isFavorite}" (click)="onChangeFavoriteHandler($event)">
+        <svg width="16" height="15">
+          <use xlink:href="./assets/icons/global-sprite.svg#gb-star"></use>
+        </svg>
+      </div>
+      <div class="header-arrow">
+        <svg width="12" height="12">
+          <use xlink:href="./assets/icons/global-sprite.svg#gb-arrowUp"></use>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div @collapse *ngIf="isOpen" class="collapse_wrapper">
+    <div class="collapse">
+    <ng-container *ngTemplateOutlet="templateOutlet"></ng-container>
+    </div>
+  </div>
+</div>

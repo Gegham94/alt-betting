@@ -1,0 +1,59 @@
+<div class="bet-slip-wrapper">
+  <div class="bet-slip" [ngClass]="{ open: isOpen }">
+    <header class="header" (click)="onChangeIsOpen.emit(isOpen)">
+      <div class="header-sides" (click)="onClickHeaderOptions($event, 'betslip')">
+        <div class="header-option">
+          <span class="header-option_title">Betslip</span>
+          <span class="header-option_badge">1</span>
+        </div>
+      </div>
+      <div *ngIf="isOpen" class="header-sides openBets">
+        <div class="header-option" (click)="onClickHeaderOptions($event, 'open_bets')">
+          <span class="header-option_title">Open Bets</span>
+          <span class="header-option_badge">1</span>
+        </div>
+      </div>
+
+      <div class="header-icon">
+        <svg width="23" height="23">
+          <use xlink:href="./assets/icons/global-sprite.svg#gb-sidebar-bottom"></use>
+        </svg>
+      </div>
+    </header>
+
+    <div class="settings-wrapper">
+      <div class="gear-icon-wrapper" (click)="isOpenQuickBet = !isOpenQuickBet">
+        <svg width="20" height="18">
+          <use xlink:href="./assets/icons/global-sprite.svg#gb-gear"></use>
+        </svg>
+      </div>
+    </div>
+
+    <div @collapse *ngIf="isOpenQuickBet" class="quick-bet-collapse">
+      <div class="quick-bet-wrapper">
+        <div class="quick-bet-top">
+          <label class="checkbox-label">
+            <app-checkbox [type]="'switch'" [(checked)]="betslipService.quickBetChecked"></app-checkbox>
+            <span class="label">QUICK BET</span>
+          </label>
+          <input
+            type="number"
+            class="app-input"
+            placeholder="Stake"
+            (keydown)="blockChars($event)"
+            [(ngModel)]="betslipService.quickBetStake" />
+        </div>
+        <div class="quick-bet-bottom">
+          <label class="checkbox-label">
+            <app-checkbox [size]="18" [(checked)]="betslipService.quickBetOdds"></app-checkbox>
+            <span class="label">Accept if odds increase</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <section @collapse (@collapse.done)="handleAnimationDone($event)" *ngIf="isOpen" class="section">
+      <ng-container *ngTemplateOutlet="cardsRef"></ng-container>
+    </section>
+  </div>
+</div>

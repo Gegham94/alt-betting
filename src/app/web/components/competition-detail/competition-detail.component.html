@@ -1,0 +1,54 @@
+<div class="competitionDetail">
+  <div #competitionDetailTop class="competitionDetail_top">
+    <div class="teams">
+      <div class="team">
+        <div>
+          <img src="assets/images/arsenal.png" alt="team" />
+          <span>Arsenal</span>
+        </div>
+        <svg width="13" height="13" (click)="onChangeIsOpen($event, 'top')">
+          <use xlink:href="./assets/icons/global-sprite.svg#gb-cyclePlus"></use>
+        </svg>
+      </div>
+      <div class="team">
+        <div>
+          <img src="assets/images/manchester.png" alt="team" />
+          <span>Manchester United</span>
+        </div>
+        <svg width="13" height="13" (click)="onChangeIsOpen($event, 'bottom')">
+          <use xlink:href="./assets/icons/global-sprite.svg#gb-cyclePlus"></use>
+        </svg>
+      </div>
+    </div>
+    <div class="statistic">
+      <div class="statisticH2h">
+        <svg width="20" height="20">
+          <use xlink:href="./assets/icons/global-sprite.svg#gb-statistic"></use>
+        </svg>
+        <span>H2H</span>
+      </div>
+      <div class="plus">
+        <svg width="20" height="20" (click)="onChangeIsOpen($event, 'both')">
+          <use xlink:href="./assets/icons/global-sprite.svg#gb-cyclePlus"></use>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="moreInfo" (click)="handleShowMore()">
+    <span>{{ showMore ? 'Less info' : 'More info' }}</span>
+    <div [ngClass]="{ showMore }">
+      <svg width="10" height="10">
+        <use xlink:href="./assets/icons/global-sprite.svg#gb-arrowUp"></use>
+      </svg>
+    </div>
+  </div>
+  <div @collapse *ngIf="showMore" class="showMoreInformation">
+    <ng-container [ngTemplateOutlet]="contentChild"></ng-container>
+  </div>
+
+  <div *ngIf="isOpenState" class="tooltip" [ngClass]="isOpenState">
+    <button class="tooltip_button" (click)="onDetectType($event,'home')">Home</button>
+    <button class="tooltip_button" (click)="onDetectType($event,'away')">Away</button>
+    <button class="tooltip_button" (click)="onDetectType($event,'group')">Group</button>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div #singleSelect class="single-select" (click)="toggleDropdown($event)" >
+  <div class="selected-option-wrapper">
+    <svg width="16" height="16" class="single-select-search" *ngIf="isOpen && isSearchable">
+      <use xlink:href="./assets/icons/global-sprite.svg#gb-search"></use>
+    </svg>
+    <svg width="12" height="12" class="single-select-arrow" [ngClass]="{ isOpen: isOpen }" *ngIf="!selectedOption">
+      <use xlink:href="./assets/icons/global-sprite.svg#gb-arrowUp"></use>
+    </svg>
+    @if (isSearchable) {
+      <input
+        #selectLabel
+        type="text"
+        [readOnly]="!isOpen"
+        [disabled]="disabled"
+        class="selected-option"
+        [ngClass]="{ search: isOpen, deleteBtn }"
+        (input)="handleSearch($event)"
+        [placeholder]="isOpen ? 'Search...' : placeholder"
+        [value]="isOpen ? searchValue : selectedOption?.[labelName] || ''" />
+    } @else {
+      <input
+        #selectLabel
+        type="text"
+        [readOnly]="true"
+        [disabled]="disabled"
+        class="selected-option"
+        [placeholder]="placeholder"
+        [value]="selectedOption?.[labelName] || ''" />
+    }
+    <svg
+      width="12"
+      height="12"
+      class="single-select-close"
+      *ngIf="!!selectedOption && deleteBtn"
+      (click)="handleDelete($event)">
+      <use xlink:href="./assets/icons/global-sprite.svg#gb-close"></use>
+    </svg>
+  </div>
+
+  <ng-template #dropDownTemplate>
+    <div *ngIf="isOpen" class="options-list">
+      <div id="custom-dropdown" *ngFor="let option of OPTIONS" (mousedown)="selectOption($event, option)">
+        <span>{{ option?.[labelName] }}</span>
+        <div class="option-tick">
+          <svg width="13" height="13" *ngIf="selectedOption?.[keyName] === option[keyName]">
+            <use xlink:href="./assets/icons/global-sprite.svg#gb-tick"></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

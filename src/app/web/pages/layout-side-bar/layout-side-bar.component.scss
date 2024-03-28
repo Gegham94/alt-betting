@@ -1,0 +1,43 @@
+@import '../../../scss/mixins';
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .layoutSideBar {
+    width: 100%;
+    display: flex;
+    @include vhMinHeight100MinusHeader;
+
+    .sidebar {
+      width: 451px;
+      flex-shrink: 0;
+    }
+
+    .view-pages {
+      margin: 0 14px;
+      flex-shrink: 0;
+      overflow-y: auto;
+      min-width: 592px;
+      overflow-x: hidden;
+      width: calc(100% - 849px);
+      border-left: 1px solid var(--visual-elements-4);
+      border-right: 1px solid var(--visual-elements-4);
+      @include vhHeight100MinusHeader;
+      @include projectScrollVerticalSmall;
+    }
+
+    .bet-slip-wrapper {
+      right: 0;
+      width: 366px;
+      flex-shrink: 0;
+      position: fixed;
+      @include vhHeight100MinusHeader;
+
+      .bet-slip{
+        overflow: hidden;
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+<div class="selections-wrapper">
+  <span class="game-score" *ngIf="!hideTitle && title">{{title}}</span>
+
+  <div class="selections" [ngStyle]="{'flex-direction': isColumn ? 'column' : 'row'}">
+    <div class="selection" [ngClass]="{ selected: isSelectedYes }" (click)="onChangeHandler(0)">
+      <span>YES</span>
+      <span>{{ fixDecimalPlaces(1.76, 2) }}</span>
+    </div>
+    <div class="selection" [ngClass]="{ selected: isSelectedNo }" (click)="onChangeHandler(1)">
+      <span>NO</span>
+      <span>{{ fixDecimalPlaces(1.758, 2) }}</span>
+    </div>
+  </div>
+</div>

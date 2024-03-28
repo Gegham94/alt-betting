@@ -1,0 +1,159 @@
+@import '../../../scss/mixins';
+
+:host {
+  width: 100%;
+  display: flex;
+
+  .my-bets {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    overflow: auto;
+    height: calc(100vh - var(--header-height));
+
+    form {
+      z-index: 1001;
+      position: relative;
+
+      .filter-group {
+        gap: 16px;
+        display: flex;
+        padding: 16px 24px;
+        align-items: center;
+        background: var(--visual-elements-4);
+
+        .filter-filed {
+          width: 100%;
+          max-width: 180px;
+        }
+      }
+    }
+
+    .table {
+      width: 100%;
+      padding: 48px 24px;
+
+      .tableRow-head {
+        background: var(--visual-elements-4);
+
+        .tableCell {
+          font-size: 14px;
+          padding: 9.5px 8px;
+          text-align: start;
+          color: var(--text-grey);
+          background: var(--visual-elements-4);
+        }
+      }
+
+      .tableRow-body {
+        border-bottom: 1px solid var(--visual-elements-primary-black-2);
+        background: var(--visual-elements-5);
+
+        .tableCell {
+          font-size: 14px;
+          padding: 15px 8px;
+          text-align: start;
+          color: var(--text);
+          background: var(--visual-elements-5);
+
+          &.winAmount {
+            display: flex;
+            flex-direction: column;
+
+            :first-child {
+              display: inline-block;
+            }
+
+            :last-child {
+              font-size: 10px;
+              display: inline-block;
+              color: var(--text-content);
+            }
+          }
+
+          &.odds {
+            color: var(--warning-1);
+          }
+        }
+      }
+    }
+
+    .promotion {
+      gap: 24px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      .title {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .promotion-body {
+        gap: 16px;
+        width: 100%;
+        display: flex;
+        height: 150px;
+        max-width: 900px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px 8px 0 0;
+        background: var(--primary);
+
+        .promotion-team {
+          gap: 12px;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+
+          .jersey-wrapper {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            background: var(--visual-elements-17);
+
+            img {
+              width: 24px;
+              height: 24px;
+              object-fit: contain;
+            }
+          }
+
+          > span {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text);
+            white-space: nowrap;
+          }
+        }
+
+        .promotion-date {
+          display: flex;
+          white-space: nowrap;
+          align-items: center;
+          flex-direction: column;
+
+          :first-child {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+          }
+
+          :last-child {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--text);
+
+          }
+        }
+
+      }
+    }
+  }
+}

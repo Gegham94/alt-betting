@@ -1,0 +1,90 @@
+<div class="betslip-card">
+  <header class="header">
+    <div class="header-moveTo">
+      <svg width="9" height="9">
+        <use xlink:href="./assets/icons/global-sprite.svg#gb-double-right"></use>
+      </svg>
+      <span>Move to Match Builder</span>
+    </div>
+    <div class="header-delete">
+      <svg width="10" height="10">
+        <use xlink:href="./assets/icons/global-sprite.svg#gb-close"></use>
+      </svg>
+    </div>
+  </header>
+  <div class="teams-names">
+    @if (variant === 1) {
+      <span>Home</span>
+      <span>VS</span>
+      <span>Away</span>
+    }
+    @if (variant === 2) {
+      <span>Group</span>
+    }
+  </div>
+
+  @if (variant == 1) {
+    <section class="section">
+      <div class="team team_home">
+        <div class="team-info">
+          <span>Event</span>
+          <span>4</span>
+        </div>
+        <div class="team-info">
+          <span>Team </span>
+          <span>2</span>
+        </div>
+      </div>
+      <div class="team team_away">
+        <div class="team-info">
+          <span>4</span>
+          <span>Event</span>
+        </div>
+        <div class="team-info">
+          <span>2</span>
+          <span>Team</span>
+        </div>
+      </div>
+    </section>
+  }
+
+  @if (variant === 2) {
+    <section class="section section__group">
+      <div class="team">
+        <div class="team-info">
+          <span>Event</span>
+          <span>4</span>
+        </div>
+        <div class="team-info">
+          <span>Team </span>
+          <span>2</span>
+        </div>
+      </div>
+    </section>
+  }
+
+  <footer class="footer">
+    <div class="stake-wrapper">
+      <div class="bet-info-wrapper">
+        <span class="bet">Home/Yes</span>
+        <span class="stake">Stake <b>1.78</b></span>
+      </div>
+
+      <div class="stake-input-wrapper">
+        <div class="stake-input">
+          <input
+            type="number"
+            class="app-input"
+            placeholder="Stake"
+            (keydown)="blockChars($event)"
+            [(ngModel)]="stakeValue" />
+          <div @fadeInOut *ngIf="!!stakeValue" class="stake-input-texts">
+            <span>To Return:</span>
+            <span>222 USD</span>
+          </div>
+        </div>
+        <button @animateBetButton *ngIf="!!stakeValue" class="btn-success">BET</button>
+      </div>
+    </div>
+  </footer>
+</div>

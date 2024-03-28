@@ -1,0 +1,203 @@
+@import '../../../../app/scss/mixins';
+
+:host {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+
+  .multi-select {
+    gap: 2px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 0 8px;
+    position: relative;
+    border-radius: 4px;
+    align-items: center;
+    color: var(--text-content-secondary);
+    border: 1px solid var(--visual-elements-5);
+    background: var(--visual-elements-primary-black-2);
+
+    .multi-select-search {
+      top: 50%;
+      left: 8px;
+      stroke-width: 2px;
+      position: absolute;
+      transform: translateY(-50%);
+      stroke: var(--text-content-secondary);
+      animation: fadeIn 0.15s ease forwards;
+    }
+
+    .multi-select-arrow {
+      top: 50%;
+      right: 8px;
+      stroke-width: 2px;
+      position: absolute;
+      transform: translateY(-50%) rotateX(180deg);
+      stroke: var(--text-content-secondary);
+      transition: 0.15s all ease;
+
+      &.isOpen{
+        transform: translateY(-50%) rotateX(0deg);
+      }
+    }
+
+    .selected-option {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      padding: 0 8px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      box-sizing: border-box;
+      color: var(--text-content-secondary);
+      background: var(--visual-elements-primary-black-2);
+
+      &.search {
+        padding: 0 8px 0 24px;
+      }
+
+      &:disabled,
+      &.disabled {
+        background: var(--visual-elements-primary-black-1);
+      }
+
+      &::placeholder{
+        font-size: 14px;
+        color: var(--text-content-secondary);
+      }
+    }
+
+    .multi-select-badges {
+      gap: 4px;
+      display: flex;
+      align-items: center;
+      height: calc(100% - 8px);
+
+
+      .multi-select-badge-placeholder {
+        font-size: 14px;
+        user-select: none;
+        color: var(--text-content-secondary);
+      }
+
+      .multi-select-badge {
+        gap: 6px;
+        padding: 4px;
+        display: flex;
+        font-size: 12px;
+        color: var(--text);
+        border-radius: 4px;
+        align-items: center;
+        background: var(--primary);
+        height: calc(100% - 16px);
+
+        svg {
+          opacity: 0;
+          transition: 0.15s all ease;
+          stroke: var(--visual-elements-6);
+        }
+
+        &:hover {
+          svg {
+            opacity: 1;
+          }
+        }
+      }
+
+      .badges-count {
+        font-size: 8px;
+        margin-top: auto;
+      }
+    }
+
+    &.disabled {
+      background: var(--visual-elements-primary-black-1);
+
+      .multi-select-badges {
+        .multi-select-badge {
+          color: var(--text-content-secondary);
+          background: var(--visual-elements-2);
+
+          svg {
+            opacity: 0;
+
+            &:hover {
+              opacity: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.multi-select-options-list {
+  margin: 0;
+  padding: 0;
+  z-index: 1000;
+  display: flex;
+  overflow: auto;
+  cursor: pointer;
+  position: fixed;
+  list-style: none;
+  max-height: 132px;
+  box-sizing: border-box;
+  flex-direction: column;
+  border: 1px solid var(--visual-elements-11);
+  background-color: var(--visual-elements-5);
+  @include projectScrollVerticalSmall;
+
+  div {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    flex-shrink: 0;
+    padding: 0 8px;
+    cursor: pointer;
+    margin-top: 1px;
+    align-items: center;
+    transition: 0.15s all ease;
+    justify-content: flex-start;
+    background: var(--visual-elements-primary-black-1);
+
+    .option-tick {
+      width: 13px;
+      height: 13px;
+      stroke: var(--primary-2);
+      background: transparent;
+    }
+
+    span {
+      flex-grow: 1;
+      font-size: 14px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      color: var(--text);
+    }
+
+    &:hover {
+      background-color: var(--visual-elements-4);
+    }
+  }
+
+  :first-child {
+    margin-top: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,12 @@
+<div class="my-games">
+  <div class="tabs">
+    <div
+      class="tab"
+      (click)="activeTabId = tab.id"
+      *ngFor="let tab of tabs"
+      [ngClass]="{ active: activeTabId === tab.id }">
+      <span>{{ tab.name }}</span>
+    </div>
+  </div>
+
+</div>

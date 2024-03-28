@@ -1,0 +1,47 @@
+<div #multiSelect class="multi-select" (click)="toggleDropdown($event)" [ngClass]="{ disabled }">
+  <svg width="16" height="16" class="multi-select-search" *ngIf="isOpen && isSearchable">
+    <use xlink:href="./assets/icons/global-sprite.svg#gb-search"></use>
+  </svg>
+
+  <svg width="12" height="12" class="multi-select-arrow" [ngClass]="{isOpen}">
+    <use xlink:href="./assets/icons/global-sprite.svg#gb-arrowUp"></use>
+  </svg>
+
+  <input
+    #selectLabel
+    type="text"
+    [readOnly]="!isOpen"
+    [disabled]="disabled"
+    [value]="searchValue"
+    class="selected-option"
+    [placeholder]="'Search...'"
+    [ngClass]="{ search: isOpen }"
+    *ngIf="isOpen && isSearchable"
+    (input)="handleSearch($event)" />
+
+  <div class="multi-select-badges" *ngIf="!isOpen">
+    <span  *ngIf="!selectedOptions.length" class="multi-select-badge-placeholder">{{ placeholder }}</span>
+    <div class="multi-select-badge" *ngFor="let selectedOpt of selectedOptions.slice(0, badgesLength)">
+      <span>{{ selectedOpt?.[this.labelName] }}</span>
+      <svg width="10" height="10" (click)="handleDeleteBadge($event, selectedOpt)">
+        <use xlink:href="./assets/icons/global-sprite.svg#gb-close"></use>
+      </svg>
+    </div>
+    <span class="badges-count" *ngIf="selectedOptions.length > badgesLength">
+      and {{ selectedOptions.length - badgesLength }} more...
+    </span>
+  </div>
+
+  <ng-template #dropDownTemplate>
+    <div *ngIf="isOpen" class="multi-select-options-list">
+      <div id="custom-multi-select-dropdown" *ngFor="let option of OPTIONS" (mousedown)="selectOption($event, option)">
+        <span>{{ option?.[labelName] }}</span>
+        <div class="option-tick" *ngIf="isChecked(option)">
+          <svg width="13" height="13">
+            <use xlink:href="./assets/icons/global-sprite.svg#gb-tick"></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

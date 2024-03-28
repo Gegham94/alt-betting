@@ -1,0 +1,59 @@
+:host {
+  display: flex;
+
+  .selections-wrapper {
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+
+    .game-score {
+      cursor: default;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      display: inline-block;
+      color: var(--text-content-secondary);
+    }
+
+    .selections {
+      gap: 8px;
+      display: flex;
+      align-items: center;
+
+      .selection {
+        min-width: 59px;
+        gap: 4px;
+        padding: 8px;
+        display: flex;
+        cursor: pointer;
+        border-radius: 4px;
+        align-items: center;
+        justify-content: center;
+        transition: 0.15s all ease;
+        background: var(--visual-elements-4);
+
+        > :first-child {
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--text);
+        }
+
+        > :last-child {
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--warning-1);
+        }
+
+        &.selected{
+          background: var(--warning-1);
+
+        > :last-child{
+          color: var(--visual-elements-primary-black);
+        }
+        }
+      }
+
+    }
+
+  }
+}

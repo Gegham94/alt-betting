@@ -1,0 +1,10 @@
+export { SidebarComponent } from './sidebar/sidebar.component';
+export { SidebarViewComponent } from './sidebar-view/sidebar-view.component';
+export { RegionComponent } from './region/region.component';
+export { CompetitionComponent } from './competition/competition.component';
+export { RegionDetailComponent } from './region-detail/region-detail.component';
+export { CompetitionTypeComponent } from './competition-type/competition-type.component';
+export { CompetitionDetailComponent } from './competition-detail/competition-detail.component';
+export { MyBetsTableComponent } from './my-bets-table/my-bets-table.component';
+export { BetslipComponent } from './betslip/betslip.component';
+export { BetslipCardComponent } from './betslip-card/betslip-card.component';

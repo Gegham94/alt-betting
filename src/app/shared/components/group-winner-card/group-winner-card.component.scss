@@ -1,0 +1,229 @@
+:host {
+  width: 100%;
+  display: flex;
+
+
+  .match-builder-cross-match-card-wrapper {
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .match-builder-cross-match-card {
+      height: 100%;
+      display: flex;
+      max-width: 435px;
+      position: relative;
+      width: calc(50% - 20px);
+      flex-direction: column;
+
+      .header {
+        gap: 4px;
+        width: 100%;
+        display: flex;
+        padding: 4px 8px;
+        align-items: center;
+        justify-content: flex-end;
+        background: var(--visual-elements-3);
+        border-bottom: 1px solid var(--visual-elements-14);
+
+        img {
+          width: 28px;
+          height: 20px;
+          object-fit: contain;
+        }
+
+        span {
+          font-size: 14px;
+          font-weight: 500;
+          white-space: nowrap;
+          color: var(--text-content);
+        }
+      }
+
+      .section {
+        display: flex;
+        padding: 4px 8px;
+        align-items: flex-start;
+        justify-content: space-between;
+        background: var(--visual-elements-4);
+
+        .left {
+          gap: 8px;
+          display: flex;
+          flex-direction: column;
+
+          &_name {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-grey);
+          }
+        }
+
+        .right {
+          gap: 8px;
+          display: flex;
+          flex-direction: column;
+
+          .team {
+            gap: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            &_name {
+              font-size: 12px;
+              font-weight: 500;
+              color: var(--text);
+              white-space: nowrap;
+            }
+
+            &_logo {
+              width: 16px;
+              height: 16px;
+              border-radius: 50%;
+              object-fit: contain;
+            }
+
+            &.disabled{
+              .team_name{
+                color: var(--visual-elements-5);
+              }
+              .team_logo{
+                filter: grayscale(1);
+              }
+            }
+          }
+        }
+      }
+
+      .footer {
+        display: flex;
+        padding: 7px 8px;
+        align-items: center;
+        justify-content: flex-end;
+        background: var(--visual-elements-4);
+        border-top: 1px solid var(--visual-elements-14);
+
+        &_left {
+          display: flex;
+          cursor: pointer;
+          align-items: center;
+          margin-right: auto;
+          justify-content: center;
+
+          svg {
+            fill: var(--visual-elements-1);
+          }
+        }
+
+        &_right {
+          gap: 4px;
+          display: flex;
+          align-items: center;
+
+          svg {
+            fill: var(--visual-elements-1);
+          }
+
+          span {
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+            color: var(--text-grey);
+          }
+        }
+      }
+
+      .castling {
+        top: 21px;
+        right: -7px;
+        width: 14px;
+        height: 14px;
+        display: flex;
+        cursor: pointer;
+        position: absolute;
+        border-radius: 4px;
+        align-items: center;
+        justify-content: center;
+        background: var(--visual-elements-5);
+        //box-shadow: 0 0 1px var(--visual-elements-16);
+
+        svg {
+          stroke: var(--visual-elements-1);
+        }
+      }
+
+      .live {
+        gap: 4px;
+        display: flex;
+        padding: 4px;
+        border-radius: 4px;
+        align-items: center;
+        background: var(--visual-elements-5);
+
+        span {
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: 1.1px;
+          color: var(--text-grey);
+        }
+
+        &_dot {
+          left: 2px;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: var(--primary-5);
+        }
+      }
+
+      .hag {
+        display: flex;
+        padding: 2px 5.5px;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+
+        span {
+          font-size: 12px;
+          font-weight: 500;
+        }
+
+        &_green {
+          background: var(--primary-10);
+
+          span {
+            color: var(--primary-5);
+          }
+        }
+
+        &_yellow {
+          background: var(--warning-3);
+
+          span {
+            color: var(--warning-1);
+          }
+        }
+
+        &_blue {
+          background: var(--secondary-8);
+
+          span {
+            color: var(--secondary-3);
+          }
+        }
+      }
+
+    }
+
+    .selections {
+      gap: 6px;
+      margin-left: 8px;
+      flex-grow: 1;
+      display: flex;
+    }
+  }
+
+}
